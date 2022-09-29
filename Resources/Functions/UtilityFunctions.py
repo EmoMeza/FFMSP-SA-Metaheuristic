@@ -62,7 +62,13 @@ def get_repeated(selective_answer,less_freq):
 
 def answer_Quality(sequences,answer,metric):
     counter=0
+    print(answer)
     for i in range(len(sequences)):
         if(hf.get_Hamming_Distance(answer,sequences[i],len(answer))>=metric):
             counter=counter+1
     return counter/len(sequences)
+    
+def resetSequences(sequences):
+    for i in range(len(sequences)):
+        if(sequences[i].is_satisfied()==True):
+            sequences[i].change_satisfied(False)

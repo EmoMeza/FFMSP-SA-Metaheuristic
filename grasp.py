@@ -1,10 +1,16 @@
+import Resources.Functions.UtilityFunctions as uf
+import Resources.Services.FileManager as fm
+import Resources.Functions.GRASP as grasp
 import sys
 
 def main():
     file_name=sys.argv[2]
     threshold=sys.argv[4]
-
-    
+    sequences=fm.open_File_By_Name(file_name)
+    threshold=0.8
+    sequence,quality=grasp.GRASP(sequences,threshold)
+    print(f'Best solution: {sequence} and the quality is {quality}')
+    return 0
 
 if __name__ == '__main__':
     if(len(sys.argv)==1):
@@ -21,7 +27,7 @@ if __name__ == '__main__':
         print("Example: python3 grasp.py -i sequences.txt -t 6000")
         print("This program will display the time and quality of the solution obtained")
 
-    elif((len(sys.argv)==5 and sys.argv[1]=="-i" and sys.argv[3]=="-th")):
+    elif((len(sys.argv)==5 and sys.argv[1]=="-i" and sys.argv[3]=="-t")):
         main()
     else:
         print("Incorrect execution")
