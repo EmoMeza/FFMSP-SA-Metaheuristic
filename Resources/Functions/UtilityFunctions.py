@@ -7,6 +7,7 @@ def build_PG_Solution(sequences,metric):
     for i in range(sequences[0].get_len()-1):
         if(len(answer)<metric):
             answer.append(ff.get_less_frequent_PG(sequences,i)) 
+            #answer.append(random.choice(['A','C','G','T']))
         else:
             answer.append(get_character_for_answer_PG(answer,sequences,metric,i))            
     return answer
@@ -66,3 +67,8 @@ def answer_Quality(sequences,answer,metric):
         if(hf.get_Hamming_Distance(answer,sequences[i],len(answer))>=metric):
             counter=counter+1
     return counter/len(sequences)
+    
+def resetSequences(sequences):
+    for i in range(len(sequences)):
+        if(sequences[i].is_satisfied()==True):
+            sequences[i].change_satisfied(False)
