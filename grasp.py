@@ -1,15 +1,45 @@
-import Resources.Functions.UtilityFunctions as uf
 import Resources.Services.FileManager as fm
-import Resources.Functions.GRASP as grasp
+import Resources.Functions.HammingFunctions as hf
+import Resources.Functions.GraspFunctions as grsp
 import sys
+from time import sleep
+import time
+import threading
+from Resources.Functions.GraspFunctions import solutions
+
+
+
+
+def timer(seconds):
+
+    for i in range(seconds):
+        # hour = int((seconds-i)/3600)
+        # minute = int(((seconds-i)%3600)/60)
+        # second = int(((seconds-i)%3600)%60)
+        # print("Time: %02d:%02d:%02d" % (hour, minute, second))
+        sleep(1)
+    return True
+    
+    
+
+
+
 
 def main():
     file_name=sys.argv[2]
-    threshold=sys.argv[4]
+    seconds=sys.argv[4]
+    t=threading.Thread(target=timer,args=[int(seconds)])
     sequences=fm.open_File_By_Name(file_name)
     threshold=0.8
-    sequence,quality=grasp.GRASP(sequences,threshold)
-    print(f'Best solution: {sequence} and the quality is {quality}')
+    t.start()
+    metric=hf.min_Hamming_Distance(sequences,threshold)
+    current_time=time.time()
+    grsp.GRASP(sequences,threshold,t,metric,current_time)
+    #print the quality and time of all the solutions found during the execution and also print the answer on the last line
+    for solution in solutions:
+        print(f'Quality: {solution[1]} Time: {solution[2]}')
+        if(solution==solutions[-1]):
+            print(f'Best Solution Found: {solution[0]}')
     return 0
 
 if __name__ == '__main__':

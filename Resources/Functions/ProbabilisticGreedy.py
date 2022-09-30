@@ -1,5 +1,6 @@
 import Resources.Functions.UtilityFunctions as uf
 import Resources.Functions.HammingFunctions as hf
+import random
 
 def Probabilistic_Greedy(sequences,threshold):
     uf.resetSequences(sequences)
