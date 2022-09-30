@@ -63,3 +63,4 @@ if __name__ == '__main__':
         print("Incorrect execution")
         print("For help, enter the following argument:")
         print("python3 grasp.py -h")
+        
