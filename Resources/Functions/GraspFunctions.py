@@ -21,7 +21,8 @@ def GRASP(sequences,threshold,t,metric,current_time):
         if(new_quality>best_quality):
             best_answer=new_answer
             best_quality=new_quality
-            print("New best answer found: "+str(best_answer))
+            # print("New best answer found: "+str(best_answer))
+            print("New best answer found.")
             print("Quality: "+str(uf.answer_Quality(sequences,best_answer,metric)))
             print("Time elapsed: "+str(time.time()-current_time)+"seconds")
             solution=[best_answer,uf.answer_Quality(sequences,best_answer,metric),(time.time()-current_time)]

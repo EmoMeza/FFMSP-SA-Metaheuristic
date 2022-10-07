@@ -37,9 +37,10 @@ def main():
     grsp.GRASP(sequences,threshold,t,metric,current_time)
     #print the quality and time of all the solutions found during the execution and also print the answer on the last line
     for solution in solutions:
-        print(f'Quality: {solution[1]} Time: {solution[2]}')
         if(solution==solutions[-1]):
             print(f'Best Solution Found: {solution[0]}')
+            print(f'Quality: {solution[1]}')
+            print(f'Time: {solution[2]}')
     return 0
 
 if __name__ == '__main__':
